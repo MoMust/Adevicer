@@ -38,6 +38,7 @@ model Review {
   user     User     @relation(fields: [userId], references: [id])
   userId   String
   comments Comment[]
+  createdAt  DateTime @default(now())
 }
 
 model Comment {
