@@ -1,11 +1,1 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow&display=swap');
-
-.container{
-    border: 1px solid red;
-    height: 200px;
-}
-
-.wrapper{
-    display: flex;
-    justify-content: space-between;
-}
