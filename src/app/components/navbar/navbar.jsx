@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className=" h-60 border relative">
+    <div className=" h-60 border relative box-border">
       <div className="flex justify-between m-5">
         <div className="">
           <Image
@@ -17,12 +17,15 @@ const Navbar = () => {
           />
         </div>
         <div className="mt-10 flex text-center">
-          <h1 className="xl:text-6xl lg:text-5xl sm:text-3xl font-tomorrow">
-            Welcome to the greatest <span className="bg-black text-white p-1 md:font-bold">Advicer</span> <br></br>for you
-            gadgets
+          <h1 className="lg:text-5xl sm:text-3xl font-tomorrow">
+            Welcome to the greatest{" "}
+            <span className="bg-black text-white p-1 md:font-bold">
+              Advicer
+            </span>{" "}
+            <br></br>for you gadgets
           </h1>
         </div>
-        <div className="hidden md:flex gap-3 text-xl h-10 ">
+        <div className="hidden md:flex gap-3 text-xl h-10 text-2xl">
           <Link href="/" className="group">
             Home
             <div class="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
