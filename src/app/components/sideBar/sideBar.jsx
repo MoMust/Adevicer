@@ -4,7 +4,7 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-    <div className="border col-span-2 pl-7 pt-20 font-tomorrow">
+    <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
       <div className="flex gap-2 items-center mb-10">
         <Image
           src="/icons/rocket.svg"
