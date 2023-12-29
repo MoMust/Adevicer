@@ -3,108 +3,30 @@ import Gadgets from "./components/showGadgets/page";
 import ReviewList from "./components/reviewList/reviewList";
 import Link from "next/link";
 import SideBar from "./components/sideBar/sideBar";
-
+import ReviewCard from "./components/reviewCard/reviewCard";
 export default function Home() {
   return (
     <div className=" grid grid-cols-10 min-h-screen">
-      <SideBar />
-      <div className="font-tomorrow lg:col-span-8 col-span-10 flex flex-col items-center gap-14 justify-center card-container">
-        <div className="border rounded-md w-4/6 card">
-          <div className="pt-12">
-            <h1 className="text-center lg:text-3xl">Title</h1>
-          </div>
-          <div className=" bg-gray-100 flex mt-5 justify-center">
-            <Image src="/images/lenovo.png" width={250} height={250} />
-          </div>
-          <div className="flex justify-center mt-5">
-            <span>27-12-2023</span>
-          </div>
-          <div className="flex justify-center">
-            <div className="rounded flex flex-row gap-10 bg-gray-100 mt-4 p-3 pl-6 w-80 h-12">
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/heartGrey.png" width={20} height={20} />
-                </div>
-                <div className="text-center">
-                  <span className="">Like</span>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/comment.png" width={20} height={20} />
-                </div>
-                <div className="text-center">
-                  <span>23 </span>
-                  <span>Comments</span>
-                </div>
-              </div>
-            </div>
+      <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
+        <SideBar />
+      </div>
+      <div className="font-tomorrow lg:col-span-6 col-span-10 flex flex-col items-center gap-14 justify-center card-container">
+        <div className="mt-8 flex align-center flex-col">
+          <label for="search" className="pr-3 mb-3 text-2xl ">
+            Type to search...
+          </label>
+          <div className="flex gap-5 items-center">
+            <input
+              type="text"
+              name="search"
+              className="border w-96 h-10 pl-5"
+            ></input>
+            <button className="border bg-black text-white w-28 h-12 font-bold">Search...</button>
           </div>
         </div>
-        <div className="border rounded-md w-4/6 card">
-          <div className="pt-12">
-            <h1 className="text-center lg:text-3xl">Title</h1>
-          </div>
-          <div className=" bg-gray-100 flex mt-5 justify-center">
-            <Image src="/images/lenovo.png" width={250} height={250} />
-          </div>
-          <div className="flex justify-center mt-5">
-            <span>27-12-2023</span>
-          </div>
-          <div className="flex justify-center">
-            <div className="rounded flex flex-row gap-10 bg-gray-100 mt-4 p-3 pl-6 w-80 h-12">
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/heartGrey.png" width={20} height={20} />
-                </div>
-                <div className="text-center">
-                  <span className="hidden lg:block">Like</span>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/comment.png" width={20} height={20} />
-                </div>
-                <div className="text-center hidden lg:block">
-                  <span>23 </span>
-                  <span>Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="border rounded-md w-4/6 card">
-          <div className="pt-12">
-            <h1 className="text-center lg:text-3xl">Title</h1>
-          </div>
-          <div className=" bg-gray-100 flex mt-5 justify-center">
-            <Image src="/images/lenovo.png" width={250} height={250} />
-          </div>
-          <div className="flex justify-center mt-5">
-            <span>27-12-2023</span>
-          </div>
-          <div className="flex justify-center">
-            <div className="rounded flex flex-row gap-10 bg-gray-100 mt-4 p-3 pl-6 w-80 h-12">
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/heartGrey.png" width={20} height={20} />
-                </div>
-                <div className="text-center">
-                  <span className="hidden lg:block">Like</span>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <div>
-                  <Image src="/icons/comment.png" width={20} height={20} />
-                </div>
-                <div className="text-center hidden lg:block">
-                  <span>23 </span>
-                  <span>Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
       </div>
     </div>
   );

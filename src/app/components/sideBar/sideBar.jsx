@@ -1,16 +1,17 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const SideBar = () => {
   return (
-    <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
+    <div>
       <div className="flex gap-2 items-center mb-10">
         <Image
           src="/icons/rocket.svg"
           width={30}
           height={30}
           className="hidden md:block"
+          alt="rocket"
         />
         <span className="font-bold lg:text-2xl md:text-xl">Trending</span>
       </div>
@@ -33,6 +34,6 @@ const SideBar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default SideBar
+export default SideBar;
