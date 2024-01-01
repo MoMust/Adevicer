@@ -10,49 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  email      String    @unique
-  name       String?
-  comments   Comment[]
-  reviews    Review[]
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  email    String    @unique
+  name     String?
+  comments Comment[]
+  reviews  Review[]
 }
 
 model Gadget {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
-  category    Category  @relation(fields: [categoryId], references: [id])
+  category    Category @relation(fields: [categoryId], references: [id])
   categoryId  String
-  review     Review[]
+  review      Review[]
 }
 
 model Review {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  title    String
-  content  String
-  rating   Int
-  gadget   Gadget   @relation(fields: [gadgetId], references: [id])
-  gadgetId String
-  user     User     @relation(fields: [userId], references: [id])
-  userId   String
-  comments Comment[]
-  createdAt  DateTime @default(now())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String    @unique
+  content   String
+  rating    Int
+  gadget    Gadget    @relation(fields: [gadgetId], references: [id])
+  gadgetId  String
+  catSlug   String
+  cat       Category  @relation(fields: [catSlug], references: [slug])
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  comments  Comment[]
+  createdAt DateTime  @default(now())
 }
 
 model Comment {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   content  String
-  user     User     @relation(fields: [userId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
   userId   String
-  review   Review   @relation(fields: [reviewId], references: [id])
+  review   Review @relation(fields: [reviewId], references: [id])
   reviewId String
 }
 
 model Category {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   name    String   @unique
+  slug    String   @unique
   gadgets Gadget[]
+  Review  Review[]
 }
-
