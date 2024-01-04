@@ -1,23 +1,32 @@
-import React from 'react'
-import Image from 'next/image';
-const ReviewCard = ({item}) => {
-
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+const ReviewCard = ({ item }) => {
   // Format date
   const date = new Date(item.createdAt);
 
   const formattedDate = date.toISOString().split("T")[0]; // yyyy-mm-dd format
   const formattedTime = date.toTimeString().split(" ")[0].substring(0, 5);
-  
+
   const formattedDateTime = formattedDate + " " + formattedTime;
 
   return (
     <div className="border rounded-md w-4/6 card">
       <div className="pt-12">
-        <h1 className="text-center lg:text-3xl">{item.title}</h1>
+        <Link href={`/reviews/${item.slug}`}>
+          <h1 className="text-center lg:text-3xl">{item.title}</h1>
+        </Link>
       </div>
-      <div className=" bg-gray-100 flex mt-5 justify-center">
-        <Image src="/images/lenovo.png" width={250} height={250} alt="lenovo" />
-      </div>
+      <Link href={`/reviews/${item.slug}`}>
+        <div className=" bg-gray-100 flex mt-5 justify-center">
+          <Image
+            src="/images/lenovo.png"
+            width={250}
+            height={250}
+            alt="lenovo"
+          />
+        </div>
+      </Link>
       <div className="flex justify-center mt-5">
         <span>{formattedDateTime}</span>
       </div>
@@ -56,6 +65,6 @@ const ReviewCard = ({item}) => {
       </div>
     </div>
   );
-}
+};
 
-export default ReviewCard
+export default ReviewCard;

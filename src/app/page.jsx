@@ -23,7 +23,7 @@ const Home = async () =>{
 
   const data = await getData();
 
-  console.log('data', data);
+  // console.log('data', data);
   return (
     <div className=" grid grid-cols-10 min-h-screen">
       <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">

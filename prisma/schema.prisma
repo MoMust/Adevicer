@@ -46,10 +46,10 @@ model Review {
 model Comment {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   content  String
-  user     User   @relation(fields: [userId], references: [id])
-  userId   String
-  review   Review @relation(fields: [reviewId], references: [id])
-  reviewId String
+  user     User   @relation(fields: [userEmail], references: [email])
+  userEmail   String
+  review   Review @relation(fields: [reviewSlug], references: [slug])
+  reviewSlug String
 }
 
 model Category {
