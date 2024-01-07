@@ -1,11 +1,18 @@
-import React from "react";
+'use client'
+
+import React, { useState } from "react";
 // import styles from "./navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import ModalMenu from "../modalMenu/modalMenu";
 
 const Navbar = () => {
+
+  const [showModal, setShowModal] = useState(true)
+
+
   return (
-    <div className=" h-60 border relative box-border mainContainer">
+    <div className=" h-68 lg:h-60 border relative box-border mainContainer">
       <div className="flex gap-5 lg:justify-between m-5 contentContainer">
         <div className="imageContainer">
           <Image
@@ -25,7 +32,7 @@ const Navbar = () => {
             <br></br>for you gadgets
           </h1>
         </div>
-        <div className="hidden lg:flex gap-3 text-xl h-10 text-2xl linksContainer">
+        <div className="font-tomorrow mt-28 lg:flex gap-3 text-xl h-10 text-2xl linksContainer">
           <Link href="/" className="group">
             Home
             <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
@@ -39,10 +46,11 @@ const Navbar = () => {
             <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
           </Link>
         </div>
-        <button className="lg:hidden absolute right-10 bottom-10">
-          <Image src="/icons/hamMenu.svg" width={30} height={30} alt="hamburger"/>
-        </button>
+        {showModal && <ModalMenu setShowModal={setShowModal}/>}
       </div>
+        <button className="lg:hidden pl-10" onClick={() => setShowModal(!showModal)}>
+          <Image src="/icons/hamMenu.svg" width={40} height={40} alt="hamburger"/>
+        </button>
     </div>
   );
 };
