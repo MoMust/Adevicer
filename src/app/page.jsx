@@ -4,6 +4,7 @@ import ReviewList from "./components/reviewList/reviewList";
 import Link from "next/link";
 import SideBar from "./components/sideBar/sideBar";
 import ReviewCard from "./components/reviewCard/reviewCard";
+import ModalMenu from "./components/modalMenu/modalMenu";
 
 
 const getData = async () => {
@@ -46,7 +47,7 @@ const Home = async () =>{
           </div>
         </div>
         {data?.review?.map((item) => (
-          <ReviewCard item={item} key={item.id}/>
+          <ReviewCard item={item} key={item.id} />
         ))}
       </div>
     </div>
