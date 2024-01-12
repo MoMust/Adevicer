@@ -1,10 +1,14 @@
 import React from 'react'
 import styles from './reviewList.module.css'
+import ReviewCard from '../reviewCard/reviewCard';
 
-const getData = async () => {
-        const resp = await fetch('http://localhost:3000/api/reviews',  {
-  cache: "no-store",
-});
+const getData = async (cat) => {
+        const resp = await fetch(
+          `http://localhost:3000/api/reviews?cat=${cat || ""}`,
+          {
+            cache: "no-store",
+          }
+        );
 
     if(!resp.ok){
         throw new Error('Failed')
@@ -13,15 +17,17 @@ const getData = async () => {
     return resp.json();
     }
 
-const ReviewList = async () => {
-    const {review} = await getData();
+const ReviewList = async ({cat}) => {
+  
+    const {review} = await getData(cat);
 
-    // console.log(review)
   return (
-    <div>
-        
-    </div>
-  )
+    <>
+      {review.map((item) => (
+        <ReviewCard item={item} key={item.id} />
+      ))}
+    </>
+  );
 }
 
 export default ReviewList

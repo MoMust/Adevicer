@@ -8,7 +8,7 @@ import ModalMenu from "../modalMenu/modalMenu";
 
 const Navbar = () => {
 
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
 
 
   return (

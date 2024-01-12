@@ -2,7 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const SideBar = () => {
+
+const getData = async (cat) => {
+  const resp = await fetch(
+    `http://localhost:3000/api/categories`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!resp.ok) {
+    throw new Error("Failed");
+  }
+
+  return resp.json();
+};
+
+const SideBar = async () => {
+
+  const data = await getData();
+
+  console.log('data:',data.category[1].name)
+
   return (
     <div>
       <div className="flex gap-2 items-center mb-10">
@@ -19,8 +40,8 @@ const SideBar = () => {
       <div className="mb-10">
         <span className="font-bold lg:text-2xl md:text-xl">Categories</span>
         <div className="flex flex-col mt-3">
-          <Link href="/">Laptops</Link>
-          <Link href="/">Phones</Link>
+          <Link href="/categories?cat=Laptops">Laptops</Link>
+          <Link href="/categories?cat=Phones">Phones</Link>
           <Link href="/">Computer gear</Link>
         </div>
       </div>

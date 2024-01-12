@@ -27,8 +27,8 @@ const ModalMenu = ({setShowModal}) => {
           <div className="mb-10">
             <span className="font-bold lg:text-2xl md:text-xl">Categories</span>
             <div className="flex flex-col mt-3">
-              <Link href="/">Laptops</Link>
-              <Link href="/">Phones</Link>
+              <Link href="/categories?cat=Laptops">Laptops</Link>
+              <Link href="/categories?cat=Laptops">Phones</Link>
               <Link href="/">Computer gear</Link>
             </div>
           </div>
