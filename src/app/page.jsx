@@ -7,22 +7,9 @@ import ReviewCard from "./components/reviewCard/reviewCard";
 import ModalMenu from "./components/modalMenu/modalMenu";
 
 
-const getData = async () => {
-  const resp = await fetch("http://localhost:3000/api/reviews", {
-    cache: "no-store",
-  });
-
-  if (!resp.ok) {
-    throw new Error("Failed");
-  }
-
-  return resp.json();
-};
-
-
 const Home = async () =>{
 
-  const data = await getData();
+  
 
   // console.log('data', data);
   return (
@@ -46,9 +33,7 @@ const Home = async () =>{
             </button>
           </div>
         </div>
-        {data?.review?.map((item) => (
-          <ReviewCard item={item} key={item.id} />
-        ))}
+        <ReviewList/>
       </div>
     </div>
   );
