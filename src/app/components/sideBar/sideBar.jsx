@@ -3,26 +3,22 @@ import Link from "next/link";
 import React from "react";
 
 
-const getData = async (cat) => {
-  const resp = await fetch(
-    `http://localhost:3000/api/categories`,
-    {
-      cache: "no-store",
-    }
-  );
+// const getData = async () => {
+//   const resp = await fetch(
+//     `http://localhost:3000/api/categories`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
 
-  if (!resp.ok) {
-    throw new Error("Failed");
-  }
+//   if (!resp.ok) {
+//     throw new Error("Failed");
+//   }
 
-  return resp.json();
-};
+//   return resp.json();
+// };
 
-const SideBar = async () => {
-
-  const data = await getData();
-
-  console.log('data:',data.category[1].name)
+const SideBar = () => {
 
   return (
     <div>
