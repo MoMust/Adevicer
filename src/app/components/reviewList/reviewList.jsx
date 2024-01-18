@@ -18,42 +18,6 @@ const getData = async (cat, title) => {
   return resp.json();
 };
 
-// const ReviewList = ({ cat, title, setLoading, loading }) => {
-//   const [reviews, setReviews] = useState([]);
-//   // TO BE USED IN A CLIENT COMPONENT useEffect IS USED
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const data = await getData(cat, title);
-//         setReviews(data.review); 
-//         setLoading(false)
-//       } catch (error) {
-//         console.error(error.message);
-//       }
-//     };
-
-//     fetchData();
-//   }, [cat, title, setLoading]);
-
-//   console.log('reviews', reviews)
-
-//   return (
-//     <>
-//       {reviews.length > 0 ? (
-//         reviews.map((item) => <ReviewCard item={item} key={item.id} />)
-//       ) : loading ? (
-//         <div>Loading</div>
-//       ) : (
-//         <div>
-//           <h1 className="text-3xl">
-//             Sorry, we could not find any reviews with this title
-//           </h1>
-//         </div>
-//       )}
-//     </>
-//   );
-// };
-
 const ReviewList = ({ cat, title, setLoading, loading }) => {
   const [reviews, setReviews] = useState([]); // Data tracked in this state
   const [isLoaded, setIsLoaded] = useState(false); // New state to track if data is loaded

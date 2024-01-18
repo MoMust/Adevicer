@@ -16,7 +16,7 @@ const Search = ({ searchParams }) => {
         <div>
           <h1 className="text-xl mb-20">Based on your search: {title}</h1>
         </div>
-        <ReviewList title={title} setLoading={setLoading}/>
+        <ReviewList title={title} setLoading={setLoading} loading={loading}/>
       </div>
     </div>
   );
