@@ -3,7 +3,7 @@ import ReviewList from "../components/reviewList/reviewList";
 import SideBar from "../components/sideBar/sideBar";
 
 const Categories = ({ searchParams }) => {
-  const page = parseInt(searchParams.page) || 1;
+  // const page = parseInt(searchParams.page) || 1;
   const { cat } = searchParams;
 
   return (

@@ -4,7 +4,7 @@ import ReviewCard from '@/app/components/reviewCard/reviewCard';
 import Image from 'next/image';
 import Rating from '@/app/components/rating/rating';
 import Comment from '@/app/components/comment/comment';
-
+// import ReviewMockList from "../../api/mock/reviewDb"; //Imported mock data
 const getData = async (slug) => {
   const resp = await fetch(`http://localhost:3000/api/reviews/${slug}`, {
     cache: "no-store",
@@ -21,6 +21,7 @@ const getData = async (slug) => {
 const SinglePage = async ({params}) => {
 
   const {slug} = params;
+  // const data = ReviewMockList;
   const data = await getData(slug);
   // console.log('slug', slug);
   return (
@@ -45,7 +46,7 @@ const SinglePage = async ({params}) => {
             </div>
           </div>
         </div>
-        <Comment reviewSlug={slug} />
+        <Comment reviewSlug={slug} reviewMock={data}/>
       </div>
     </div>
   );

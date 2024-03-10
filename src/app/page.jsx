@@ -9,7 +9,7 @@ import ReviewCard from "./components/reviewCard/reviewCard";
 import ModalMenu from "./components/modalMenu/modalMenu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import ReviewMockList from "./api/mock/reviewDb"; //THIS IS MOCK DATA IMPORTED
 const Home = () => {
   const [searchValue, setSearchValue] = useState(""); // Set search value
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ const Home = () => {
             <button type="submit">Search</button>
           </form>
         </div>
-        <ReviewList setLoading={setLoading} loading={loading} />
+        <ReviewList setLoading={setLoading} loading={loading} ReviewMockList={ReviewMockList}/>
       </div>
     </div>
   );

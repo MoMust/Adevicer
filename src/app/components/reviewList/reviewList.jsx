@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./reviewList.module.css";
 import ReviewCard from "../reviewCard/reviewCard";
+// import ReviewMockList from "../../api/mock/reviewDb"; //Imported mock data
 
 const getData = async (cat, title) => {
   const resp = await fetch(
@@ -18,12 +19,17 @@ const getData = async (cat, title) => {
   return resp.json();
 };
 
-const ReviewList = ({ cat, title, setLoading, loading }) => {
+const ReviewList = ({ cat, title, setLoading, loading, ReviewMockList }) => {
+  // const [reviews, setReviews] = useState(ReviewMockList); // THIS IS MOCK DATA
   const [reviews, setReviews] = useState([]); // Data tracked in this state
-  const [isLoaded, setIsLoaded] = useState(false); // New state to track if data is loaded
+  const [isLoaded, setIsLoaded] = useState(false); // State to track if data is loaded
 
+  // Comment out UseEffect while using mock data
   useEffect(() => {
-    setLoading(true); // Start loading
+    if (setLoading) {
+      setLoading(true); // Start loading
+    }
+ 
     setIsLoaded(false); // Reset loaded state
     const fetchData = async () => {
       try {
@@ -32,7 +38,10 @@ const ReviewList = ({ cat, title, setLoading, loading }) => {
       } catch (error) {
         console.error(error.message);
       } finally {
-        setLoading(false); // Stop loading
+        if (setLoading) {
+          setLoading(false); // Stop loading
+        }
+
         setIsLoaded(true); // Set loaded state to true
       }
     };
@@ -54,7 +63,7 @@ const ReviewList = ({ cat, title, setLoading, loading }) => {
   } else if (isLoaded) {
     return <div>Sorry, we could not find any reviews with this title</div>;
   } else {
-    return null // Render nothing if not loaded and not loading
+    return null; // Render nothing if not loaded and not loading
   }
 };
 

@@ -19,7 +19,12 @@ const fetcher = async (url) => {
 };
 
 
-const Comment = ({reviewSlug}) => {
+const Comment = ({reviewSlug, reviewMock}) => {
+
+    // THIS IS FOR MOCK DATA
+    // const data = reviewMock;
+    // const isLoading = false;
+    // const error = false;
 
     const { data, error, isLoading } = useSWR(
       `http://localhost:3000/api/comments?reviewSlug=${reviewSlug}`, fetcher
@@ -29,9 +34,9 @@ const Comment = ({reviewSlug}) => {
     //   `http://localhost:3000/api/comments?reviewSlug=1`
     // );
 
-    // if(error){
-    //     console.log('Fetching failed')
-    // }
+    if(error){
+        console.log('Fetching failed')
+    }
     
     if(isLoading){
         console.log('Loading')
@@ -39,9 +44,6 @@ const Comment = ({reviewSlug}) => {
         console.log(data.content)
     }
 
-    // console.log('hello');
-
-    
 
   return (
     <div className="comment flex flex-col items-center w-full mb-14">
@@ -76,21 +78,6 @@ const Comment = ({reviewSlug}) => {
               </div>
             </div>
           ))}
-      
-      {/* {data?.map((item) => (
-        <div className="border-4 relative flex flex-col w-11/12 min-h-40 max-h-full" key={item.id}>
-          <div className="text-center flex p-3 gap-3">
-            <div>
-              <Image src="/logo/AdvicerLogo.png" width={40} height={40} />
-            </div>
-            <h1>User name</h1>
-            <span>3 hours ago</span>
-          </div>
-          <div className="p-3 flex-wrap">
-            <p>{item.content}</p>
-          </div>
-        </div>
-      ))} */}
     </div>
   );
 }
