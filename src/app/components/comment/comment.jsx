@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from "next/image";
 import useSWR from "swr";
-
+import { useSession } from "next-auth/react";
 const fetcher = async (url) => {
   const resp = await fetch(url);
 
@@ -20,7 +20,8 @@ const fetcher = async (url) => {
 
 
 const Comment = ({reviewSlug, reviewMock}) => {
-
+  const { status } = useSession();
+  console.log(status)
     // THIS IS FOR MOCK DATA
     // const data = reviewMock;
     // const isLoading = false;
