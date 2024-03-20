@@ -1,14 +1,15 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 // import styles from "./navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import ModalMenu from "../modalMenu/modalMenu";
-
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const Navbar = () => {
-
-  const [showModal, setShowModal] = useState(false)
+  const { data, status } = useSession();
+  const [showModal, setShowModal] = useState(false);
 
 
   return (
@@ -41,16 +42,29 @@ const Navbar = () => {
             Write
             <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
           </Link>
-          <Link href="/" className="group">
-            Login
-            <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
-          </Link>
+          {status === "authenticated" ? (
+            <span className="cursor-pointer" onClick={signOut}>
+              Logout
+            </span>
+          ) : (
+            <Link href="/login" className="group">
+              Login
+            </Link>
+          )}
         </div>
-        {showModal && <ModalMenu setShowModal={setShowModal}/>}
+        {showModal && <ModalMenu setShowModal={setShowModal} />}
       </div>
-        <button className="lg:hidden pl-10" onClick={() => setShowModal(!showModal)}>
-          <Image src="/icons/hamMenu.svg" width={40} height={40} alt="hamburger"/>
-        </button>
+      <button
+        className="lg:hidden pl-10"
+        onClick={() => setShowModal(!showModal)}
+      >
+        <Image
+          src="/icons/hamMenu.svg"
+          width={40}
+          height={40}
+          alt="hamburger"
+        />
+      </button>
     </div>
   );
 };

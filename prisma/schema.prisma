@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -11,12 +11,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  email    String    @unique
-  name     String?
-  comments Comment[]
-  reviews  Review[]
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  accounts      Account[]
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  comments      Comment[]
+  image         String?
+  reviews       Review[]
+  Session       Session[]
 }
 
 model Gadget {
@@ -45,11 +76,11 @@ model Review {
 }
 
 model Comment {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  content  String
-  user     User   @relation(fields: [userEmail], references: [email])
-  userEmail   String
-  review   Review @relation(fields: [reviewSlug], references: [slug])
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  content    String
+  user       User   @relation(fields: [userEmail], references: [email])
+  userEmail  String
+  review     Review @relation(fields: [reviewSlug], references: [slug])
   reviewSlug String
 }
 
