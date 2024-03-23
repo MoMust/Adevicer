@@ -35,6 +35,7 @@ const ReviewList = ({ cat, title, setLoading, loading, ReviewMockList }) => {
       try {
         const data = await getData(cat, title);
         setReviews(data.review);
+        console.log('reviewData',data)
       } catch (error) {
         console.error(error.message);
       } finally {

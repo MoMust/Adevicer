@@ -9,18 +9,18 @@ const ReviewCard = ({ item }) => {
   const formattedTime = date.toTimeString().split(" ")[0].substring(0, 5);
 
   const formattedDateTime = formattedDate + " " + formattedTime;
-
+  console.log(item)
   return (
     <div className="border rounded-md w-4/6 card">
       <div className="pt-12">
         <Link href={`/reviews/${item.slug}`}>
-          <h1 className="text-center lg:text-3xl">{item.title}</h1>
+          <h1 className="text-center lg:text-3xl">{item.gadget.name}</h1>
         </Link>
       </div>
       <Link href={`/reviews/${item.slug}`}>
         <div className=" bg-gray-100 flex mt-5 justify-center">
           <Image
-            src="/images/lenovo.png"
+            src={`${item.gadget.image}`}
             width={250}
             height={250}
             alt="lenovo"
