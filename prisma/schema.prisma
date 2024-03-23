@@ -57,6 +57,7 @@ model Gadget {
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  String
   review      Review[]
+  image       String?
 }
 
 model Review {
