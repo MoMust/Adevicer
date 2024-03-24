@@ -10,6 +10,7 @@ const ReviewCard = ({ item }) => {
 
   const formattedDateTime = formattedDate + " " + formattedTime;
   // console.log(item)
+
   return (
     <div className="border rounded-md w-4/6 card">
       <div className="pt-12">

@@ -44,7 +44,9 @@ const ReviewList = ({
       try {
         const data = await getData(cat, convertedInput, searchSlug);
         setReviews(data.review);
+        
         // console.log('reviewData',data)
+
       } catch (error) {
         console.error(error.message);
       } finally {

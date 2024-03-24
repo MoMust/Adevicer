@@ -19,10 +19,12 @@ export const GET = async (req) => {
     };
   }
   try {
+
     const review = await prisma.review.findMany({
       include: { comments: true, user: true, gadget: true },
       where: whereClause,
     });
+
 
     return new NextResponse(JSON.stringify({ review }, { status: 200 }));
   } catch (error) {
