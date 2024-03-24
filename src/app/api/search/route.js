@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
-  const title = searchParams.get("title");
+  const searchInput = searchParams.get("title");
   try {
     const review = await prisma.review.findMany({
       where: {
-        title: title,
+        title: searchInput,
       },
     });
 

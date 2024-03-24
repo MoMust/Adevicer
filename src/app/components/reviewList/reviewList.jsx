@@ -4,9 +4,11 @@ import styles from "./reviewList.module.css";
 import ReviewCard from "../reviewCard/reviewCard";
 // import ReviewMockList from "../../api/mock/reviewDb"; //Imported mock data
 
-const getData = async (cat, title) => {
+const getData = async (cat, convertedInput, searchSlug) => {
   const resp = await fetch(
-    `http://localhost:3000/api/reviews?title=${title || ""}&cat=${cat || ""}`,
+    `http://localhost:3000/api/reviews?title=${
+      convertedInput || ""
+    }&searchSlug=${convertedInput || ""}`,
     {
       cache: "no-store",
     }
@@ -19,7 +21,14 @@ const getData = async (cat, title) => {
   return resp.json();
 };
 
-const ReviewList = ({ cat, title, setLoading, loading, ReviewMockList }) => {
+const ReviewList = ({
+  cat,
+  convertedInput,
+  searchSlug,
+  setLoading,
+  loading,
+  ReviewMockList,
+}) => {
   // const [reviews, setReviews] = useState(ReviewMockList); // THIS IS MOCK DATA
   const [reviews, setReviews] = useState([]); // Data tracked in this state
   const [isLoaded, setIsLoaded] = useState(false); // State to track if data is loaded
@@ -29,13 +38,15 @@ const ReviewList = ({ cat, title, setLoading, loading, ReviewMockList }) => {
     if (setLoading) {
       setLoading(true); // Start loading
     }
- 
+
     setIsLoaded(false); // Reset loaded state
     const fetchData = async () => {
       try {
-        const data = await getData(cat, title);
+        const data = await getData(cat, convertedInput, searchSlug);
         setReviews(data.review);
-        console.log('reviewData',data)
+        
+        // console.log('reviewData',data)
+
       } catch (error) {
         console.error(error.message);
       } finally {
@@ -48,7 +59,7 @@ const ReviewList = ({ cat, title, setLoading, loading, ReviewMockList }) => {
     };
 
     fetchData();
-  }, [cat, title, setLoading]);
+  }, [cat, convertedInput, searchSlug, setLoading]);
 
   // Conditional rendering based on the reviews, loading, and isLoaded states
   if (loading) {
