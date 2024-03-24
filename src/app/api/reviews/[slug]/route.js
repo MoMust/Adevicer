@@ -7,7 +7,7 @@ export const GET = async (req, { params }) => {
   try {
     const review = await prisma.review.findUnique({
       where: { slug },
-      include: { user: true},
+      include: { user: true, gadget: true},
     });
 
     return new NextResponse(JSON.stringify(review, { status: 200 }));

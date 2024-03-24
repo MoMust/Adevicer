@@ -23,7 +23,6 @@ const SinglePage = async ({params}) => {
   const {slug} = params;
   // const data = ReviewMockList;
   const data = await getData(slug);
-  // console.log('slug', slug);
   return (
     <div className=" grid grid-cols-10 min-h-screen">
       <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
@@ -35,7 +34,7 @@ const SinglePage = async ({params}) => {
             <h1 className="lg:text-3xl">{data?.title}</h1>
           </div>
           <div className="image w-full h-80 relative">
-            <Image src="/images/lenovo.png" fill objectFit='contain' />
+            <Image src={data?.gadget?.image} alt="Laptop" fill objectFit='contain' />
           </div>
           <div className="flex items-center gap-4">
             <div className="label">

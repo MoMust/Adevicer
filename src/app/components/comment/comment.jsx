@@ -21,7 +21,7 @@ const fetcher = async (url) => {
 
 const Comment = ({reviewSlug, reviewMock}) => {
   const { status } = useSession();
-  console.log(status)
+  // console.log(status)
     // THIS IS FOR MOCK DATA
     // const data = reviewMock;
     // const isLoading = false;
@@ -30,10 +30,6 @@ const Comment = ({reviewSlug, reviewMock}) => {
     const { data, error, isLoading } = useSWR(
       `http://localhost:3000/api/comments?reviewSlug=${reviewSlug}`, fetcher
     );
-
-    // const data = fetcher(
-    //   `http://localhost:3000/api/comments?reviewSlug=1`
-    // );
 
     if(error){
         console.log('Fetching failed')

@@ -9,7 +9,7 @@ const ReviewCard = ({ item }) => {
   const formattedTime = date.toTimeString().split(" ")[0].substring(0, 5);
 
   const formattedDateTime = formattedDate + " " + formattedTime;
-  console.log(item)
+  // console.log(item)
   return (
     <div className="border rounded-md w-4/6 card">
       <div className="pt-12">

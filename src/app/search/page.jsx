@@ -1,11 +1,14 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import ReviewList from "../components/reviewList/reviewList";
 import SideBar from "../components/sideBar/sideBar";
 
 const Search = ({ searchParams }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const { title } = searchParams;
+  const { searchSlug } = searchParams;
+
+  const convertedInput = title[0].toUpperCase() + title.slice(1); //Convert first letter to upper case
 
   return (
     <div className="grid grid-cols-10 min-h-screen">
@@ -16,7 +19,12 @@ const Search = ({ searchParams }) => {
         <div>
           <h1 className="text-xl mb-20">Based on your search: {title}</h1>
         </div>
-        <ReviewList title={title} setLoading={setLoading} loading={loading}/>
+        <ReviewList
+          convertedInput={convertedInput}
+          searchSlug={searchSlug}
+          setLoading={setLoading}
+          loading={loading}
+        />
       </div>
     </div>
   );
