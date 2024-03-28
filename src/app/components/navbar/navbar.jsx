@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { data, status } = useSession();
   const [showModal, setShowModal] = useState(false);
-
+  console.log("data", data?.user?.name);
 
   return (
     <div className=" h-68 lg:h-60 border relative box-border mainContainer">
@@ -38,20 +38,27 @@ const Navbar = () => {
             Home
             <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
           </Link>
-          <Link href="/" className="group">
-            Write
-            <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
-          </Link>
           {status === "authenticated" ? (
-            <span className="cursor-pointer" onClick={signOut}>
-              Logout
-            </span>
+            <div className="flex gap-3 lg:flex-row sm:flex-col gap-3 text-xl h-10 text-2xl linksContainer">
+              <Link href="/" className="group">
+                Write
+                <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
+              </Link>
+              <Link className="group" href="#" onClick={signOut}>
+                Logout
+                <div className="cursor-pointer bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
+              </Link>
+            </div>
           ) : (
             <Link href="/login" className="group">
               Login
             </Link>
           )}
         </div>
+        <span className="text-2xl font-tomorrow">
+          {" "}
+          Welcome {data?.user?.name}
+        </span>
         {showModal && <ModalMenu setShowModal={setShowModal} />}
       </div>
       <button

@@ -8,7 +8,7 @@ const getData = async (cat, convertedInput, searchSlug) => {
   const resp = await fetch(
     `http://localhost:3000/api/reviews?title=${
       convertedInput || ""
-    }&searchSlug=${convertedInput || ""}`,
+    }&cat=${cat || ""}&searchSlug=${convertedInput || ""}`,
     {
       cache: "no-store",
     }
