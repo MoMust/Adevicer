@@ -38,7 +38,7 @@ const SideBar = () => {
         <div className="flex flex-col mt-3">
           <Link href="/categories?cat=Laptops">Laptops</Link>
           <Link href="/categories?cat=Phones">Phones</Link>
-          <Link href="/">Computer gear</Link>
+          <Link href="/categories?cat=Computer Gears">Computer gear</Link>
         </div>
       </div>
       <div>
