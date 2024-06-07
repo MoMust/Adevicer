@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { data, status } = useSession();
   const [showModal, setShowModal] = useState(false);
-  console.log("data", data?.user?.name);
 
   return (
     <div className=" h-68 lg:h-60 border relative box-border mainContainer">
