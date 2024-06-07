@@ -22,13 +22,7 @@ const fetcher = async (url) => {
 const Comment = ({ reviewSlug, reviewMock, reviewData }) => {
   const { data: sessionData, status } = useSession();
   const [input, setInput] = useState("");
-  // console.log(status)
-  // THIS IS FOR MOCK DATA
-  // const data = reviewMock;
-  // const isLoading = false;
-  // const error = false;
-
-  // console.log(input);
+  
   const {
     data: commentsData,
     error,
@@ -42,23 +36,14 @@ const Comment = ({ reviewSlug, reviewMock, reviewData }) => {
     console.log("Fetching failed");
   }
 
-  if (isLoading) {
-    console.log("Loading");
-  } else if (commentsData) {
-    console.log(commentsData.content);
-  }
-
-  // console.log(input);
-  // console.log(reviewData)
 
   const onSubmitForm = async () => {
 
-    // Covert reviewSlug without special characters
+    // Convert reviewSlug to string without special characters
     const encodedString = reviewSlug;
     const decodedReviewSlug = decodeURIComponent(encodedString);
 
     try{
-      // console.log('Clicked')
       const resp = await fetch("/api/comments", {
         headers: { "Content-Type": "application/json" },
         method: "POST",
@@ -70,8 +55,8 @@ const Comment = ({ reviewSlug, reviewMock, reviewData }) => {
       });
 
       if (resp.ok) {
+        // Handle success response
       console.log('Post Success')
-      // Optionally, you can handle any additional logic here
     } else {
       // Handle error response
       console.log('Failed to create comment:', resp.statusText);
