@@ -23,6 +23,9 @@ const SinglePage = async ({params}) => {
   const {slug} = params;
   // const data = ReviewMockList;
   const data = await getData(slug);
+
+  // console.log('slug', slug)
+  // console.log('data', data)
   return (
     <div className=" grid grid-cols-10 min-h-screen">
       <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
@@ -45,7 +48,7 @@ const SinglePage = async ({params}) => {
             </div>
           </div>
         </div>
-        <Comment reviewSlug={slug} reviewMock={data}/>
+        <Comment reviewSlug={slug} reviewMock={data} reviewData={data} />
       </div>
     </div>
   );

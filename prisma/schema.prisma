@@ -82,7 +82,7 @@ model Comment {
   content    String
   user       User   @relation(fields: [userEmail], references: [email])
   userEmail  String
-  review     Review @relation(fields: [reviewSlug], references: [slug])
+  review     Review? @relation(fields: [reviewSlug], references: [slug])
   reviewSlug String
 }
 
