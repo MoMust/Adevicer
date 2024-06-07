@@ -1,22 +1,45 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 
 const Page = () => {
-    const { data, status } = useSession();
-    const router = useRouter();
-    // console.log(data, status);
-    if(status === "loading"){
-        return <div>Loading...</div>
+  const { data, status } = useSession();
+  const router = useRouter();
+
+  // console.log(data, status);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
     }
-    if(status === "authenticated"){
-        router.push("/");
-    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center mt-40 gap-6">
+        <Image
+          src="/logo/AdvicerLogo.png"
+          className="rounded-lg"
+          width={100}
+          height={100}
+          alt="logo"
+        />
+        <div className="flex items-center font-bold text-lg">
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Makes sure login page does not show after authentication
+  if (status === "authenticated") {
+    return null;
+  }
 
   return (
     <div className="flex justify-center border h-full font-tomorrow">
