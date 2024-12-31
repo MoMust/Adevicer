@@ -65,7 +65,7 @@ const Navbar = () => {
             </Link>
             {status === "authenticated" ? (
               <div className="flex gap-3 lg:flex-row sm:flex-col gap-3 text-xl h-10 text-2xl linksContainer">
-                <Link href="/" className="group text-sm md:text-xl">
+                <Link href="/write" className="group text-sm md:text-xl">
                   Write
                   <div className="bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
                 </Link>

@@ -54,8 +54,8 @@ model Gadget {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  String
+  category    Category? @relation(fields: [categoryName], references: [name])
+  categoryName  String?
   review      Review[]
   image       String?
 }
