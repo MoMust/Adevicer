@@ -34,7 +34,7 @@ const SideBar = () => {
       <div className="mb-10">
         <span className="font-bold lg:text-2xl md:text-xl">Categories</span>
         <div className="flex flex-col mt-3">
-          <Link href="/categories?cat=Laptops0" className="w-fit">
+          <Link href="/categories?cat=Laptops" className="w-fit">
             Laptops
           </Link>
           <Link href="/categories?cat=Phones" className="w-fit">
