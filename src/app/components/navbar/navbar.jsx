@@ -10,6 +10,11 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const { data, status } = useSession();
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+
+  const signingOut = async (e) => {
+    await signOut({ callbackUrl: "http://localhost:3000" });
+  }
 
   return (
     <div className=" h-68 lg:h-60 border relative box-border mainContainer">
@@ -72,7 +77,7 @@ const Navbar = () => {
                 <Link
                   className="group text-sm md:text-xl"
                   href="#"
-                  onClick={signOut}
+                  onClick={signingOut}
                 >
                   Logout
                   <div className="cursor-pointer bg-black h-[2px] w-0 group-hover:w-full transition-all duration-500"></div>
