@@ -57,6 +57,11 @@ const Write = () => {
       setReviewTitle(gadget.name); // Aut fill title name
       setReviewContent(gadget.description); // Auto fill content
       setReviewImage(gadget.image); // Auto fill image url
+    }else{
+      setSelectedGadget(null);
+      setReviewTitle("");
+      setReviewContent("");
+      setReviewImage("");
     }
   };
 
@@ -97,20 +102,22 @@ const Write = () => {
   
 
   return (
-    <div className="wrapper border w-screen h-screen grid grid-rows-6 justify-center mt-50">
-      <div className="border w-screen main-container row-span-4 grid justify-center content-center gap-3">
-        <form onSubmit={handleSubmit} className="grid gap-4">
-          <h1 className="text-3xl font-bold text-center">
-            Skapa en recension (Admin)
+    <div className="font-tomorrow box-border wrapper border w-screen h-screen grid grid-rows-6 justify-center mt-50">
+      <div className=" w-screen main-container row-span-5 grid justify-center content-center">
+        <form onSubmit={handleSubmit} className="grid gap-10 wrap mt-20">
+          <h1 className="lg:text-3xl md:text-xl font-bold text-center">
+            Create a new review (Admin)
           </h1>
 
           {/* Gadget Selection */}
-          <div>
-            <h2 className="text-xl font-semibold">Choose a gadget</h2>
+          <div className="grid gap-2">
+            <h2 className="lg:text-xl md:text-lg font-semibold text-center">
+              Choose a gadget
+            </h2>
             <select
               value={selectedGadget?.id || ""}
               onChange={(e) => handleGadgetSelect(e.target.value)}
-              className="border p-2 w-full"
+              className="border p-2 w-full text-center"
               required
             >
               <option value="">Choose a gadget</option>
@@ -124,8 +131,10 @@ const Write = () => {
 
           {/* Automatically Filled Fields */}
           {selectedGadget && (
-            <div>
-              <h2 className="text-xl font-semibold">Gadget Bild</h2>
+            <div className="flex justify-center  grid gap-2">
+              <h2 className="lg:text-xl md:text-lg font-semibold text-center">
+                Gadget Bild
+              </h2>
               <img
                 src={reviewImage || "/icons/no-image-icon.png"}
                 alt="Gadget"
@@ -135,21 +144,26 @@ const Write = () => {
           )}
 
           {/* Title Input */}
-          <div>
-            <h2 className="text-xl font-semibold">Titel</h2>
+          <div className="grid gap-2">
+            <h2 className="lg:text-xl md:text-lgfont-semibold text-center">
+              Titel
+            </h2>
             <input
               type="text"
               value={reviewTitle}
               onChange={(e) => setReviewTitle(e.target.value)}
-              className="border p-2 w-full"
+              className="border p-2 w-full text-center"
               required
             />
           </div>
 
           {/* Content Input */}
-          <div>
-            <h2 className="text-xl font-semibold">Innehåll</h2>
+          <div className="grid gap-2">
+            <h2 className="lg:text-xl md:text-lg font-semibold text-center">
+              Innehåll
+            </h2>
             <textarea
+              style={{ resize: "none" }}
               value={reviewContent}
               onChange={(e) => setReviewContent(e.target.value)}
               className="border p-2 w-full"
@@ -161,15 +175,15 @@ const Write = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded"
+            className="bg-gray-500 text-white font-bold py-2 px-4 rounded"
             disabled={loading}
           >
-            {loading ? "Skickar..." : "Skapa Recension"}
+            {loading ? "Working..." : "Create Review"}
           </button>
 
           {/* Messages */}
           {error && <p className="text-red-500">{error}</p>}
-          {success && <p className="text-green-500">Recension skapad!</p>}
+          {success && <p className="text-green-500">Review created!</p>}
         </form>
       </div>
     </div>
