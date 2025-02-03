@@ -23,9 +23,7 @@ const SinglePage = async ({params}) => {
   const {slug} = params;
   // const data = ReviewMockList;
   const data = await getData(slug);
-
-  // console.log('slug', slug)
-  // console.log('data', data)
+  console.log(data.slug)
   return (
     <div className=" grid grid-cols-10 min-h-screen">
       <div className="border hidden lg:block col-span-2 pl-7 pt-20 font-tomorrow">
@@ -44,7 +42,7 @@ const SinglePage = async ({params}) => {
               <p className="text-lg">Rating</p>
             </div>
             <div>
-              <Rating />
+              <Rating slug={data.slug} currentRating={data?.rating}/>
             </div>
           </div>
         </div>
